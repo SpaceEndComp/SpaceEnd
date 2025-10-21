@@ -40,6 +40,7 @@ function App() {
           </p>
           <a
             href="https://github.com/SpaceEndComp/Zombie-Apocalypse"
+            target="blank"
             type="button"
             aria-label="Lihat Pembaruan"
             className="mt-8 bg-[#45A29E] hover:bg-[#66FCF1] text-white hover:text-[#0B0C0C] font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-lg"
