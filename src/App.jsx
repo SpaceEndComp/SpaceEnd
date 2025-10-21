@@ -38,7 +38,8 @@ function App() {
             terbaru, fitur canggih, dan terhubung dengan komunitas sesama
             penjelajah.
           </p>
-          <button
+          <a
+            href="https://github.com/SpaceEndComp/Zombie-Apocalypse"
             type="button"
             aria-label="Lihat Pembaruan"
             className="mt-8 bg-[#45A29E] hover:bg-[#66FCF1] text-white hover:text-[#0B0C0C] font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-lg"
@@ -47,7 +48,7 @@ function App() {
             data-aos-delay="200"
           >
             Lihat Pembaruan
-          </button>
+          </a>
         </section>
 
         {/* Changelog placeholder agar navbar link berfungsi */}
