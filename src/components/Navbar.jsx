@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import NavLogo from "/assets/nav_logo.jpeg";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Navbar() {
-  const navItem = ["Home", "Changelog", "Komunitas"];
+  const navigate = useNavigate();
+
+  const navItem = ["Home", "Changelog", "Community"];
 
   const [nav, setNav] = useState(false);
 
@@ -55,7 +59,7 @@ export default function Navbar() {
         <div className="gap-8 items-center hidden md:flex">
           {navItem.map((link) => (
             <a
-              href={`#${link}`}
+              href={link == "Home" ? "/" : `/${link}`}
               key={link}
               className="text-white font-medium hover:text-teal-300 transition"
             >
@@ -66,6 +70,9 @@ export default function Navbar() {
           <button
             className="bg-primary text-black px-4 py-2 rounded hover:bg-secondary transition select-none"
             id="loginButton"
+            onClick={() => {
+              navigate("/Login");
+            }}
           >
             Login
           </button>
@@ -99,7 +106,7 @@ export default function Navbar() {
         >
           {navItem.map((link) => (
             <a
-              href={`#${link}`}
+              href={link == "Home" ? "/" : `/${link}`}
               key={link}
               onClick={() => setNav(false)}
               className="text-white font-bold hover:text-teal-300 transition w-full text-center py-4"
@@ -111,7 +118,10 @@ export default function Navbar() {
           <button
             className="bg-primary text-black rounded hover:bg-secondary transition select-none w-50 text-center py-4 mb-4"
             id="loginButton"
-            onClick={() => setNav(false)}
+            onClick={() => {
+              setNav(false);
+              navigate("/Login");
+            }}
           >
             Login
           </button>
