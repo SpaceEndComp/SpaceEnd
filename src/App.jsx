@@ -2,7 +2,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
-
   return (
     <div>
       <Navbar />
@@ -12,29 +11,13 @@ function App() {
           <h1
             id="home-title"
             className="text-5xl md:text-7xl font-extrabold tracking-tight text-white"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-            data-aos-once="true"
           >
             Jelajahi Alam Semesta dengan
           </h1>
-          <h2
-            className="text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#45A29E] to-[#66FCF1] mt-2 animate-pulse"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-            data-aos-once="true"
-          >
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#45A29E] to-[#66FCF1] mt-2 animate-pulse">
             Space End
           </h2>
-          <p
-            className="text-lg md:text-md sm:text-sm max-w-3xl mx-auto text-[#C5C6C7] mt-4"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-            data-aos-once="true"
-          >
+          <p className="text-lg md:text-md sm:text-sm max-w-3xl mx-auto text-[#C5C6C7] mt-4">
             Gerbang Anda menuju bintang dan lebih jauh lagi. Temukan pembaruan
             terbaru, fitur canggih, dan terhubung dengan komunitas sesama
             penjelajah.
@@ -45,9 +28,6 @@ function App() {
             type="button"
             aria-label="Lihat Pembaruan"
             className="mt-8 bg-[#45A29E] hover:bg-[#66FCF1] text-white hover:text-[#0B0C0C] font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-lg"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="200"
           >
             Lihat Pembaruan
           </a>
@@ -63,20 +43,10 @@ function App() {
             <h3
               id="changelog-title"
               className="text-3xl font-bold text-white mb-4"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay="200"
-              data-aos-once="true"
             >
               Changelog
             </h3>
-            <p
-              className="text-[#C5C6C7]"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay="200"
-              data-aos-once="true"
-            >
+            <p className="text-[#C5C6C7]">
               Daftar perubahan, pembaruan, dan perbaikan terbaru akan muncul di
               sini.
             </p>
