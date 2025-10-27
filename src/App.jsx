@@ -58,34 +58,16 @@ function App() {
                   alt={`Changelog image ${i + 1}`}
                   className="w-full h-48 object-cover rounded hover:transform hover:scale-105 transition-transform duration-300"
                   loading="lazy"
-                  data-aos="fade-up"
-                  data-aos-duration="1000"
-                  data-aos-delay={i * 100 + 200}
-                  data-aos-once="true"
                 />
               ))}
             </div>
           </div>
         </section>
 
-        <section id="Komunitas" className="mt-32 min-h-[50vh] py-16 bg-black/5">
+        <section id="Komunitas" className="mt-32 min-h-[50vh] py-16">
           <div className="max-w-4xl mx-auto">
-            <h3
-              className="text-3xl font-bold text-white mb-4"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay="200"
-              data-aos-once="true"
-            >
-              Komunitas
-            </h3>
-            <p
-              className="text-[#C5C6C7]"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay="200"
-              data-aos-once="true"
-            >
+            <h3 className="text-3xl font-bold text-white mb-4">Komunitas</h3>
+            <p className="text-[#C5C6C7]">
               Bergabunglah dengan diskusi, acara, dan proyek open-source kami.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
@@ -96,10 +78,6 @@ function App() {
                   alt={`Komunitas image ${i + 1}`}
                   className="w-full h-48 object-cover rounded hover:transform hover:scale-105 transition-transform duration-300"
                   loading="lazy"
-                  data-aos="fade-up"
-                  data-aos-duration="1000"
-                  data-aos-delay={i * 100 + 200}
-                  data-aos-once="true"
                 />
               ))}
             </div>

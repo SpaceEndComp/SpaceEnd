@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar() {
   const navigate = useNavigate();
 
-  const navItem = ["Home", "Changelog", "Community"];
+  const navItem = ["Home", "Changelog", "Profile"];
 
   const [nav, setNav] = useState(false);
 
@@ -63,7 +63,7 @@ export default function Navbar() {
               key={link}
               className="text-white font-medium hover:text-teal-300 transition"
             >
-              {link}
+              {link == "Profile" ? "Community" : link}
             </a>
           ))}
 
@@ -111,7 +111,7 @@ export default function Navbar() {
               onClick={() => setNav(false)}
               className="text-white font-bold hover:text-teal-300 transition w-full text-center py-4"
             >
-              {link}
+              {link == "Profile" ? "Community" : link}
             </a>
           ))}
 
