@@ -110,7 +110,6 @@ export default function CommunityChat() {
                       : "bg-[#1f2833] text-[#c5c6c7] rounded-bl-none"
                   }`}
                 >
-                  <p className="text-[1.2rem] text-white">{gamertag}</p>
                   {!isOwnMessage && (
                     <span className="block text-[#66fcf1] text-sm font-semibold mb-1 ">
                       {msg.sender}
