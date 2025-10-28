@@ -10,6 +10,7 @@ import {
   doc,
   serverTimestamp,
   addDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 export default function CommunityChat() {
@@ -17,10 +18,11 @@ export default function CommunityChat() {
   const [input, setInput] = useState("");
   const [gamertag, setGamertag] = useState("");
   const [loadingSend, setLoadingSend] = useState(false);
+  const [typingUsers, setTypingUsers] = useState([]);
   const messagesEndRef = useRef(null);
   const textareaRef = useRef(null);
 
-  // Ambil pesan realtime
+  // --- Ambil pesan realtime ---
   useEffect(() => {
     const q = query(collection(db, "messages"), orderBy("createdAt", "asc"));
     const unsub = onSnapshot(q, (snapshot) => {
@@ -29,7 +31,7 @@ export default function CommunityChat() {
     return () => unsub();
   }, []);
 
-  // Ambil gamertag user dari Firestore
+  // --- Ambil gamertag user dari Firestore ---
   useEffect(() => {
     const getUserData = async () => {
       const user = auth.currentUser;
@@ -48,12 +50,26 @@ export default function CommunityChat() {
     getUserData();
   }, []);
 
-  // Scroll otomatis ke bawah tiap pesan baru
+  // --- Pantau siapa yang lagi ngetik ---
+  useEffect(() => {
+    const q = query(collection(db, "users"));
+    const unsub = onSnapshot(q, (snapshot) => {
+      const typingNow = snapshot.docs
+        .map((doc) => doc.data())
+        .filter((user) => user.typing && user.gamertag !== gamertag)
+        .map((user) => user.gamertag);
+      setTypingUsers(typingNow);
+    });
+
+    return () => unsub();
+  }, [gamertag]);
+
+  // --- Scroll otomatis ke bawah tiap pesan baru ---
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Auto resize textarea
+  // --- Auto resize textarea ---
   useEffect(() => {
     const textarea = textareaRef.current;
     if (textarea) {
@@ -62,7 +78,23 @@ export default function CommunityChat() {
     }
   }, [input]);
 
-  // Kirim pesan
+  // --- Update status typing ---
+  const handleTyping = async (value) => {
+    setInput(value);
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const userRef = doc(db, "users", user.uid);
+    await updateDoc(userRef, { typing: true });
+
+    // otomatis mati setelah 1.5 detik ga ngetik
+    clearTimeout(window.typingTimeout);
+    window.typingTimeout = setTimeout(async () => {
+      await updateDoc(userRef, { typing: false });
+    }, 1500);
+  };
+
+  // --- Kirim pesan ---
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim() || loadingSend) return;
@@ -78,7 +110,9 @@ export default function CommunityChat() {
         createdAt: serverTimestamp(),
       });
 
-      // Delay kecil biar efek kirim lebih natural
+      // Matikan typing indicator saat pesan dikirim
+      await updateDoc(doc(db, "users", user.uid), { typing: false });
+
       await new Promise((res) => setTimeout(res, 400));
       setInput("");
     } catch (err) {
@@ -111,7 +145,7 @@ export default function CommunityChat() {
                   }`}
                 >
                   {!isOwnMessage && (
-                    <span className="block text-[#66fcf1] text-sm font-semibold mb-1 ">
+                    <span className="block text-[#66fcf1] text-sm font-semibold mb-1">
                       {msg.sender}
                     </span>
                   )}
@@ -123,6 +157,13 @@ export default function CommunityChat() {
           <div ref={messagesEndRef} />
         </div>
 
+        {/* Typing Indicator */}
+        {typingUsers.length > 0 && (
+          <div className="px-4 pb-1 text-sm text-[#66fcf1]/80 italic">
+            {typingUsers.join(", ")} lagi ngetik...
+          </div>
+        )}
+
         {/* Input Chat */}
         <form
           onSubmit={sendMessage}
@@ -132,7 +173,7 @@ export default function CommunityChat() {
             ref={textareaRef}
             rows="1"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => handleTyping(e.target.value)}
             className="flex-1 resize-none p-2 rounded-xl bg-[#0b0c10] border border-[#45a29e]/30 text-white placeholder-[#c5c6c7]/50 outline-none mr-2 overflow-hidden"
             placeholder={loadingSend ? "Mengirim..." : "Ketik pesan..."}
             disabled={loadingSend}
