@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-export default function Profile() {
+import NavbarUser from "../components/NavbarUser";
+
+export default function Settings() {
   const [user] = useAuthState(auth);
   const [data, setData] = useState(null);
   const navigate = useNavigate();
@@ -26,23 +28,28 @@ export default function Profile() {
 
   if (!user) return <p>Loading...</p>;
 
+  console.log(user)
+
   return (
-    <div className="p-8 text-center">
-      <h1 className="text-3xl font-bold mb-4">Dashboard Player</h1>
-      {data ? (
-        <>
-          <p>Gamertag: {data.gamertag}</p>
-          <p>Email: {data.email}</p>
-          <button
-            onClick={logout}
-            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded mt-4"
-          >
-            Logout
-          </button>
-        </>
-      ) : (
-        <p>Loading data...</p>
-      )}
+    <div>
+      <NavbarUser />
+      <div className="p-8">
+        {data ? (
+          <>
+            <h1 className="text-3xl font-bold mb-4">Dashboard Player</h1>
+            <p>Gamertag: {data.gamertag}</p>
+            <p>Email: {data.email}</p>
+            <button
+              onClick={logout}
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded mt-4"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <p>Loading data...</p>
+        )}
+      </div>
     </div>
   );
 }
