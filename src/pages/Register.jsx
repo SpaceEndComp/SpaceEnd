@@ -3,6 +3,7 @@ import { useState } from "react";
 import { auth, db } from "../db/firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -31,7 +32,14 @@ export default function Signup() {
 
       navigate("/Dashboard");
     } catch (err) {
-      setError(err.message);
+      let match = err.message.match(/\[(.*?)\]/);
+      if (match) {
+        setError(match[1]);
+      } else {
+        let parenMatch = err.message.match(/\((.*?)\)/);
+        setError(parenMatch ? parenMatch[1] : err.message);
+      }
+
       console.log(err.message);
     } finally {
       setLoading(false);
@@ -39,49 +47,92 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-3xl font-bold mb-4">Daftar Akun Space End</h1>
-      <form className="flex flex-col gap-2 w-64" onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Gamertag"
-          value={gamertag}
-          onChange={(e) => setGamertag(e.target.value)}
-          className="p-2 border rounded"
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="p-2 border rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="p-2 border rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-green-600 hover:bg-green-700 text-white py-2 rounded"
-        >
-          {loading ? "Loading..." : "Register"}
-        </button>
-      </form>
+    <>
+      <div className="p-10 flex flex-col items-center">
+        <h1 className="mb-8 font-extrabold text-4xl">Welcome to SpaceEnd</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <form onSubmit={handleRegister}>
+            <div>
+              <label className="block font-semibold" htmlFor="name">
+                Gamertag
+              </label>
+              <input
+                className="shadow-inner bg-gray-100 text-black rounded-lg placeholder-black p-4 border-none block mt-1 w-full"
+                id="name"
+                type="text"
+                name="name"
+                required
+                autoFocus="autofocus"
+                placeholder="Gamertag . . ."
+                value={gamertag}
+                onChange={(e) => setGamertag(e.target.value)}
+              />
+            </div>
 
-      {error && <p className="text-red-600 mt-2">{error}</p>}
+            <div className="mt-4">
+              <label className="block font-semibold" htmlFor="email">
+                Email
+              </label>
+              <input
+                className="shadow-inner bg-gray-100 text-black rounded-lg placeholder-black p-4 border-none block mt-1 w-full"
+                id="email"
+                type="email"
+                name="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email . . ."
+              />
+            </div>
 
-      <p className="mt-2">
-        Udah punya akun?{" "}
-        <a href="/Login" className="text-blue-600 hover:underline">
-          Login di sini
-        </a>
-      </p>
-    </div>
+            <div className="mt-4">
+              <label className="block font-semibold" htmlFor="password">
+                Password
+              </label>
+              <input
+                className="shadow-inner bg-gray-100 rounded-lg text-black placeholder-black p-4 border-none block mt-1 w-full"
+                id="password"
+                type="password"
+                name="password"
+                required
+                placeholder="Password . . ."
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div className="flex items-center justify-between mt-8">
+              <button
+                type="submit"
+                className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md bg-secondary hover:opacity-70 md:py-4 md:text-lg md:px-10"
+              >
+                {loading ? "Loading..." : "Register"}
+              </button>
+              <a className="font-semibold hover:opacity-55" href="/Login">
+                Sudah punya akun?
+              </a>
+            </div>
+          </form>
+
+          <aside>
+            <div className="bg-gray-100 text-black p-8 rounded">
+              <h2 className="font-bold text-2xl">
+                Intruksi untuk membuat akun SpaceEnd
+              </h2>
+              <ul className="list-disc mt-4 list-inside">
+                <li>Gunakan Gamertag dari akun minecraft yang kamu miliki.</li>
+                <li>
+                  Pastikan email yang didaftarkan aktif dan dapat diakses.
+                </li>
+                <li>Gunakan password yang kuat untuk keamanan akunmu.</li>
+              </ul>
+            </div>
+          </aside>
+          {error && <p className="text-red-600 mt-2">{error}</p>}
+        </div>
+      </div>
+
+      <Footer />
+    </>
   );
 }
