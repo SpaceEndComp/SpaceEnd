@@ -135,7 +135,7 @@ export default function CommunityChat() {
                 key={msg.id}
                 className={`flex ${
                   isOwnMessage ? "justify-end" : "justify-start"
-                } whitespace-pre`}
+                }`}
               >
                 <div
                   className={`max-w-[70%] p-3 rounded-2xl shadow-md ${
