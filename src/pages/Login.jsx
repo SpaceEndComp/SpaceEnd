@@ -132,14 +132,6 @@ export default function Login() {
                 <li>
                   Pastikan email yang didaftarkan aktif dan dapat diakses.
                 </li>
-                <li>Gunakan password yang kuat untuk keamanan akunmu.
-                </li>
-                <li>Gunakan Gamertag yang masuk akal, contoh: Flaxen Zikari.
-                </li>
-                <li>Dilarang menggunakan Gamertag yang tidak masuk akal, contoh: El Gacor.
-                </li>
-                <li>Pastikan punya nama depan dan belakang.
-                </li>
               </ul>
             </div>
           </aside>
