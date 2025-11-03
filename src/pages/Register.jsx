@@ -126,7 +126,7 @@ export default function Signup() {
                 <li>Gunakan password yang kuat untuk keamanan akunmu.</li>
                 <li>Gunakan Gamertag yang masuk akal, contoh: Flaxen Zikari.
                 </li>
-                <li>Dilarang menggunakan Gamertag yang tidak masuk akal, contoh: El Gacor.
+                <li>Dilarang menggunakan Gamertag yang tidak masuk akal, contoh: Rehan Goyang, Cicak Kayang, Asep Racing, dll.
                 </li>
                 <li>Pastikan punya nama depan dan belakang.
                 </li>
