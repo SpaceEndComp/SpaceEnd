@@ -124,11 +124,13 @@ export default function Signup() {
                   Pastikan email yang didaftarkan aktif dan dapat diakses.
                 </li>
                 <li>Gunakan password yang kuat untuk keamanan akunmu.</li>
-                <li>Gunakan Gamertag yang masuk akal, contoh: Flaxen Zikari.
+                <li>Gunakan Gamertag yang masuk akal, contoh: Flaxen_Zikari.
                 </li>
                 <li>Dilarang menggunakan Gamertag yang tidak masuk akal, contoh: Rehan Goyang, Cicak Kayang, Asep Racing, dll.
                 </li>
                 <li>Pastikan punya nama depan dan belakang.
+                </li>
+                <li>Spasi haru diganti dengan underscore "_" seperti Flaxen_Zikari <strong>(WAJIB)</strong>.
                 </li>
               </ul>
             </div>
