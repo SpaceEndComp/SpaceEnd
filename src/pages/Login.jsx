@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const navigate = useNavigate();
@@ -109,36 +110,16 @@ export default function Login() {
                 placeholder="Password . . ."
               />
             
+              {/* TOMBOL MATA (SAMA STYLE-NYA) */}
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-[62%] -translate-y-1/2 opacity-60 hover:opacity-90"
+                className="absolute right-4 top-[62%] -translate-y-1/2 text-black opacity-60 hover:opacity-90"
               >
-                {showPassword ? (
-                  // 🔒 Eye Off Icon
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"
-                    className="w-6 h-6 text-black">
-                    <path strokeLinecap="round" strokeLinejoin="round"
-                      d="M3 3l18 18M10.584 10.587A2 2 0 0112 10c1.105 0 2 .895 2 2 
-                         0 .416-.127.802-.344 1.12m2.588 2.588A7.962 7.962 0 0012 20
-                         c-4.418 0-8-3.582-8-8 0-1.79.584-3.439 1.584-4.768m2.63-2.63A7.963 
-                         7.963 0 0112 4c4.418 0 8 3.582 8 8 0 1.373-.346 2.663-.96 3.788" />
-                  </svg>
-                ) : (
-                  // 👁️ Eye Icon
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"
-                    className="w-6 h-6 text-black">
-                    <path strokeLinecap="round" strokeLinejoin="round"
-                      d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 
-                         9.542 7-1.274 4.057-5.064 7-9.542 7-4.478 0-8.268-2.943-9.542-7z" />
-                    <path strokeLinecap="round" strokeLinejoin="round"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                )}
+                {showPassword ? "🙈" : "👁️"}
               </button>
             </div>
+
 
             <div className="flex items-center justify-between mt-8">
               <button
