@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Login() {
-  const [showPassword, setShowPassword] = useState(false);
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const navigate = useNavigate();
@@ -96,30 +95,19 @@ export default function Login() {
               />
             </div>
 
-            <div className="mt-4 relative">
+            <div className="mt-4">
               <label className="block font-semibold" htmlFor="password">
                 Password
               </label>
-            
               <input
-                className="shadow-inner bg-gray-100 rounded-lg text-black placeholder-black p-4 border-none block mt-1 w-full pr-12"
+                className="shadow-inner bg-gray-100 rounded-lg text-black placeholder-black p-4 border-none block mt-1 w-full"
                 id="password"
-                type={showPassword ? "text" : "password"}
+                type="password"
                 name="password"
                 required
                 placeholder="Password . . ."
               />
-            
-              {/* TOMBOL MATA (SAMA STYLE-NYA) */}
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-[62%] -translate-y-1/2 text-black opacity-60 hover:opacity-90"
-              >
-                {showPassword ? "🙈" : "👁️"}
-              </button>
             </div>
-
 
             <div className="flex items-center justify-between mt-8">
               <button
