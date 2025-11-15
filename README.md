@@ -8,7 +8,7 @@
 
 ###
 
-<p align="left">- ReactJS.<br>- TailwindCSS.<br>- SocketIO.<br>- MongoDB.<br>- NextJS.<br>- DLL (Sesuai Kebutuhan Kedepannya.)</p>
+<p align="left">- ReactJS.<br>- TailwindCSS.<br>- Firebase.<br>- DLL (Sesuai Kebutuhan Kedepannya.)</p>
 
 ###
 
