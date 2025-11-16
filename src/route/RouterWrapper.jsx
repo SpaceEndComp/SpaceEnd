@@ -53,7 +53,7 @@ export default function RouterWrapper() {
         />
         <Route
           path="/Register"
-          element={user ? <Navigate to="/Profile" /> : <Register />}
+          element={user ? <Navigate to="/Settings" /> : <Register />}
         />
         <Route
           path="/Settings"

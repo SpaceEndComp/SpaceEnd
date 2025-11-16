@@ -23,13 +23,14 @@ export default function Signup() {
 
   // ===== Generate playerId 5 digit unik =====
   async function generateUniquePlayerId() {
-    let playerId = "";
+    // generate number 5 digit unik
+    let playerId = 0;
     let found = true;
 
     while (found) {
-      playerId = String(Math.floor(10000 + Math.random() * 90000));
+      playerId = Math.floor(10000 + Math.random() * 90000);
       const snap = await getDocs(collection(db, "users"));
-      found = snap.docs.some((doc) => doc.data().playerId === playerId);
+      found = snap.docs.some((d) => Number(d.data().playerId) === playerId);
     }
 
     return playerId;
@@ -84,18 +85,20 @@ export default function Signup() {
       await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
 
-      // Generate Player ID unik
+      // Generate Player ID unik (number)
       const newPlayerId = await generateUniquePlayerId();
 
       if (user) {
+        // Simpan playerId sebagai number
         await setDoc(doc(db, "users", user.uid), {
           email: user.email,
           gamertag,
-          playerId: newPlayerId,
+          playerId: Number(newPlayerId),
           timestamp: new Date(),
         });
       }
 
+      navigate("/Settings");
     } catch (err) {
       let match = err.message.match(/\[(.*?)\]/);
       if (match) {
