@@ -124,11 +124,11 @@ export default function Signup() {
                 Gamertag
               </label>
               <input
-                className="shadow-inner bg-gray-100 text-black rounded-lg placeholder-black p-4 mt-1 w-full"
+                className="shadow-inner bg-gray-100 text-black rounded-lg p-4 mt-1 w-full"
                 id="name"
                 type="text"
                 required
-                placeholder="Flaxen_Zikari"
+                placeholder="Gamertag(RP)..."
                 value={gamertag}
                 onChange={(e) => setGamertag(e.target.value)}
               />
@@ -140,7 +140,7 @@ export default function Signup() {
                 Email
               </label>
               <input
-                className="shadow-inner bg-gray-100 text-black rounded-lg placeholder-black p-4 mt-1 w-full"
+                className="shadow-inner bg-gray-100 text-black rounded-lg p-4 mt-1 w-full"
                 id="email"
                 type="email"
                 required
