@@ -96,7 +96,6 @@ export default function Signup() {
         });
       }
 
-      navigate("/Dashboard");
     } catch (err) {
       let match = err.message.match(/\[(.*?)\]/);
       if (match) {

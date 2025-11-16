@@ -37,7 +37,7 @@ export default function Login() {
   }, [error]);
 
   useEffect(() => {
-    if (user) navigate("/Dashboard");
+    if (user) navigate("/Settings");
   }, [user, navigate]);
 
   return (
