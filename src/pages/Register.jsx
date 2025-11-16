@@ -28,9 +28,9 @@ export default function Signup() {
     let found = true;
 
     while (found) {
-      playerId = Math.floor(10000 + Math.random() * 90000);
+      playerId = String(Math.floor(10000 + Math.random() * 90000));
       const snap = await getDocs(collection(db, "users"));
-      found = snap.docs.some((d) => Number(d.data().playerId) === playerId);
+      found = snap.docs.some((d) => String(d.data().playerId) === playerId);
     }
 
     return playerId;
@@ -89,11 +89,10 @@ export default function Signup() {
       const newPlayerId = await generateUniquePlayerId();
 
       if (user) {
-        // Simpan playerId sebagai number
         await setDoc(doc(db, "users", user.uid), {
           email: user.email,
           gamertag,
-          playerId: Number(newPlayerId),
+          playerId: newPlayerId,
           timestamp: new Date(),
         });
       }
