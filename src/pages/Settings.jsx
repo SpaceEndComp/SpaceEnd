@@ -28,7 +28,7 @@ export default function Settings() {
 
   if (!user) return <p>Loading...</p>;
 
-  console.log(user)
+  console.log(user);
 
   return (
     <div>
@@ -39,6 +39,7 @@ export default function Settings() {
             <h1 className="text-3xl font-bold mb-4">Dashboard Player</h1>
             <p>Gamertag: {data.gamertag}</p>
             <p>Email: {data.email}</p>
+            <p>PlayerId: {data.playerId}</p>
             <button
               onClick={logout}
               className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded mt-4"
@@ -47,7 +48,10 @@ export default function Settings() {
             </button>
           </>
         ) : (
-          <p>Loading data...</p>
+          <div>
+            <p>Loading data...</p>
+            <span>Jika Loading lama refresh halaman.</span>
+          </div>
         )}
       </div>
     </div>
