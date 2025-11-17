@@ -58,6 +58,13 @@ export default function Signup() {
 
     return null;
   }
+  
+  function formatGamertagCapitalize(tag) {
+    return tag
+      .split("_")
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+      .join("_");
+  }
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -89,9 +96,11 @@ export default function Signup() {
       const newPlayerId = await generateUniquePlayerId();
 
       if (user) {
+        const formattedTag = formatGamertagCapitalize(gamertag);
+
         await setDoc(doc(db, "users", user.uid), {
           email: user.email,
-          gamertag,
+          gamertag: formattedTag,
           playerId: newPlayerId,
           timestamp: new Date(),
         });
